@@ -27,12 +27,6 @@ class ShellNavigation extends StatelessWidget {
     }
   }
 
-  // Helper method for drawer item navigation
-  void _goTo(BuildContext context, String location) {
-    Navigator.of(context).pop(); // Close the drawer first
-    context.go(location); // Then navigate
-  }
-
   @override
   Widget build(BuildContext context) {
     final selectedIndex = _getSelectedIndex(context);

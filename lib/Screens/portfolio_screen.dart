@@ -12,7 +12,13 @@ class PortfolioPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Portfolio'),
+        title: Text(
+          'My Portfolio',
+          style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
+              fontSize: 30,
+              fontWeight: FontWeight.bold),
+        ),
       ),
       body: portfolioData.when(
         data: (data) {

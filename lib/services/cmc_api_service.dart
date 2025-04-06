@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart'; // Import Dio
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fusion/core/provider/dio_provider_coinmarketcap.dart';
 import 'package:fusion/models/cmc_response_model.dart';
@@ -15,7 +16,7 @@ class CmcApiService {
   CmcApiService(this._ref);
 
   // Endpoint path (base URL is now in dioProvider)
-  final String _listingsEndpoint = "/v1/cryptocurrency/listings/latest";
+  final String _listingsEndpoint = dotenv.env['CMCENDPOINT']!;
 
   // Method to get listings using Dio
   Future<List<CryptoListing>> getLatestListings({int limit = 100}) async {

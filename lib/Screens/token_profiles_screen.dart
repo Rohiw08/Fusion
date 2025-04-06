@@ -37,7 +37,13 @@ class TokenProfilesScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('DexScreener Latest Profiles'),
+        title: Text(
+          'DexScreener Latest Profiles',
+          style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
+              fontSize: 30,
+              fontWeight: FontWeight.bold),
+        ),
       ),
       body: profilesAsyncValue.when(
         // --- Loading State ---
@@ -67,7 +73,6 @@ class TokenProfilesScreen extends ConsumerWidget {
           ),
         ),
 
-        // --- Data State ---
         data: (profiles) {
           if (profiles.isEmpty) {
             return const Center(child: Text('No token profiles found.'));

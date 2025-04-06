@@ -4,18 +4,20 @@ class WidgetModel {
   final String? backgroundImage;
   final String? name;
   final String? logo;
+  final String? widgetUrl;
 
-  WidgetModel({
-    this.height,
-    this.width,
-    this.backgroundImage,
-    this.name,
-    this.logo,
-  });
+  WidgetModel(
+      {this.height,
+      this.width,
+      this.backgroundImage,
+      this.name,
+      this.logo,
+      this.widgetUrl});
 
   // Factory method to create a WidgetModel from a JSON (Map<String, dynamic>)
   factory WidgetModel.fromJson(Map<String, dynamic> json) {
     return WidgetModel(
+      widgetUrl: json['widgetUrl'] as String?,
       height: json['height'] as int?,
       width: json['width'] as int?,
       backgroundImage:

@@ -39,7 +39,13 @@ class CryptoListingsScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Crypto Listings (CMC Sandbox)'),
+        title: Text(
+          'Crypto Listings',
+          style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
+              fontSize: 30,
+              fontWeight: FontWeight.bold),
+        ),
       ),
       body: listingsAsyncValue.when(
         // --- Loading State ---

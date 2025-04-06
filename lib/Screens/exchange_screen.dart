@@ -12,7 +12,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Exchange",
         ),
       ),

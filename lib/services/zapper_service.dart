@@ -1,12 +1,13 @@
 // services/zapper_service.dart
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/asset.dart'; // Adjust import path
 
 class ZapperService {
   final Dio _dio = Dio();
-  final String _baseUrl = 'https://public.zapper.xyz/graphql';
-  final String _apiKey = '83db6aab-9418-4883-83d6-8eca87d317d7';
+  final String _baseUrl = dotenv.env['ZAPPERBASEURL']!;
+  final String _apiKey = dotenv.env['ZAPPERAPIKEY']!;
 
   Future<PortfolioData> getPortfolioData(String address) async {
     try {

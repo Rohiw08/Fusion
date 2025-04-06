@@ -1,5 +1,7 @@
+// ignore_for_file: unused_import
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fusion/Screens/community_screen.dart';
 import 'package:fusion/Screens/home_screen.dart';
@@ -20,32 +22,28 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await dotenv.load(fileName: ".env");
   runApp(
-    // 1. Wrap with ProviderScope
     const ProviderScope(
       child: MyApp(),
     ),
   );
 }
 
-// Make MyApp a ConsumerWidget to access ref
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // 2. Get the AuthNotifier for GoRouter's refreshListenable and redirect
     final authNotifier = ref.watch(authNotifierProvider);
 
-    // 3. Configure GoRouter with redirect and refreshListenable
     final router = GoRouter(
-      initialLocation: '/home', // Initial location attempt
-      refreshListenable: authNotifier, // Listen to auth changes for redirection
+      initialLocation: '/home',
+      refreshListenable: authNotifier,
       redirect: (BuildContext context, GoRouterState state) {
         final bool loggedIn = authNotifier.isLoggedIn;
         final String location = state.uri.toString(); // Current location
 
-        // Define public routes
         final bool isPublicRoute =
             location == '/login' || location == '/signup';
 
@@ -62,7 +60,6 @@ class MyApp extends ConsumerWidget {
         return null;
       },
       routes: [
-        // Add Login and Signup routes (outside the shell)
         GoRoute(
           path: '/login',
           builder: (context, state) => const LoginScreen(),
@@ -71,24 +68,17 @@ class MyApp extends ConsumerWidget {
           path: '/signup',
           builder: (context, state) => const SignUpScreen(),
         ),
-        // Main application shell
         ShellRoute(
-          // Using a GlobalKey for the shell's navigator is good practice
           navigatorKey: GlobalKey<NavigatorState>(debugLabel: 'shell'),
           builder: (context, state, child) {
-            // ShellNavigation now wraps the child screen
             return ShellNavigation(child: child);
           },
           routes: [
-            // Routes accessible within the shell (protected by redirect)
             GoRoute(
                 path: '/home', builder: (context, state) => const HomeScreen()),
             GoRoute(
                 path: '/exchange',
                 builder: (context, state) => const SwapCalculatorScreen()),
-            // GoRoute(
-            //     path: '/nft',
-            //     builder: (context, state) => const TokenProfilesScreen()),
             GoRoute(
                 path: '/tokens',
                 builder: (context, state) => const CryptoListingsScreen()),
@@ -104,10 +94,9 @@ class MyApp extends ConsumerWidget {
       ),
     );
 
-    // 4. Use MaterialApp.router
     return MaterialApp.router(
-      routerConfig: router, // Use the configured router
-      theme: darkNightTheme, // Apply your theme
+      routerConfig: router,
+      theme: darkNightTheme,
       debugShowCheckedModeBanner: false,
     );
   }

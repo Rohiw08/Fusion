@@ -199,7 +199,13 @@ class _SwapCalculatorScreenState extends ConsumerState<SwapCalculatorScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Crypto Swap Calculator'),
+        title: Text(
+          'Crypto Swap Calculator',
+          style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
+              fontSize: 30,
+              fontWeight: FontWeight.bold),
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),

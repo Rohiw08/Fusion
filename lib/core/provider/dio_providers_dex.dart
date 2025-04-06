@@ -1,11 +1,11 @@
 // lib/core/providers/dio_provider.dart
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// Provider for the base Dio instance
 final dioProvider = Provider<Dio>((ref) {
   final options = BaseOptions(
-    baseUrl: "https://api.dexscreener.com", // Base URL for DexScreener
+    baseUrl: dotenv.env['DEXSCREENERAPI']!,
     connectTimeout: const Duration(seconds: 10),
     receiveTimeout: const Duration(seconds: 10),
     headers: {'Accept': 'application/json'},

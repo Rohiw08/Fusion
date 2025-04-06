@@ -14,8 +14,7 @@ final widgetsProvider = FutureProvider<List<WidgetModel>>((ref) async {
 
     return widgets;
   } catch (e) {
-    // Handle any errors that occur during fetching
     print("Error fetching widgets: $e");
-    return []; // Or throw the error if you want to handle it in the UI
+    return [];
   }
 });

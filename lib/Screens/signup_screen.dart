@@ -1,13 +1,12 @@
 // lib/features/auth/view/signup_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-// Adjust import paths based on your actual project structure
 import 'package:fusion/CustomWidgets/auth_widgets.dart'; // Assuming this path is correct
+import 'package:fusion/CustomWidgets/custom_button.dart';
+import 'package:fusion/CustomWidgets/password_text_field.dart';
 import 'package:fusion/core/utils/show_snackbar.dart'; // Assuming this path is correct
 import 'package:fusion/services/auth/auth_controller.dart'; // Assuming this path is correct
 
-// --- SignUpScreen Widget (Padding added to TextFields) ---
 class SignUpScreen extends ConsumerStatefulWidget {
   const SignUpScreen({super.key});
   @override
@@ -15,7 +14,6 @@ class SignUpScreen extends ConsumerStatefulWidget {
 }
 
 class _SignUpScreenState extends ConsumerState<SignUpScreen> {
-  // Only keep controllers for email and password
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
